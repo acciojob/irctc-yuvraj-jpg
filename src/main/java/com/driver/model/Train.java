@@ -1,6 +1,4 @@
 package com.driver.model;
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.Table;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 @Table(name = "trains")
 public class Train {

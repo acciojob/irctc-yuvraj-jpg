@@ -1,5 +1,4 @@
 package com.driver.services;
-
 import com.driver.EntryDto.AddTrainEntryDto;
 import com.driver.EntryDto.SeatAvailabilityEntryDto;
 import com.driver.model.Passenger;
@@ -13,20 +12,26 @@ import org.springframework.stereotype.Service;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class TrainService {
-
     @Autowired
     TrainRepository trainRepository;
-
     public Integer addTrain(AddTrainEntryDto trainEntryDto){
-
         //Add the train to the trainRepository
         //and route String logic to be taken from the Problem statement.
         //Save the train and return the trainId that is generated from the database.
         //Avoid using the lombok library
-        return null;
+        Train train = new Train();
+        String route="";
+        List<Station> list = trainEntryDto.getStationRoute();
+        for(Station station:list){
+            route += station+",";
+        }
+        train.setRoute(route);
+        train.setDepartureTime(trainEntryDto.getDepartureTime());
+        train.setNoOfSeats(trainEntryDto.getNoOfSeats());
+        Train x =trainRepository.save(train);
+        return x.getTrainId();
     }
 
     public Integer calculateAvailableSeats(SeatAvailabilityEntryDto seatAvailabilityEntryDto){
